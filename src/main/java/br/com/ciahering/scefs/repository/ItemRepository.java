@@ -77,7 +77,7 @@ public class ItemRepository {
 	public void updateItem(Item item) {
 		try {
 			PreparedStatement stmt = connection.prepareStatement(
-					"UPDATE public.item SET dataDeAquisicao=?, data_de_cadastro=?, marca=?, modelo=?, patrimonio=? WHERE id=?;");
+					"UPDATE public.item SET data_de_aquisicao=?, data_de_cadastro=?, marca=?, modelo=?, patrimonio=? WHERE id=?;");
 			stmt.setInt(6, item.getId());
 			stmt.setDate(1, Date.valueOf(item.getData_de_aquisicao()));
 			stmt.setDate(2, Date.valueOf(item.getData_de_cadastro()));
@@ -87,7 +87,7 @@ public class ItemRepository {
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
-			throw new RuntimeException("Erro na alteração de item do método alterarItem. Verificar se os parâmetros vieram corretos.", e);
+			throw new RuntimeException("Erro na alteração do item. Patrimônio: " + item.getPatrimonio(), e);
 		}
 	}
 
