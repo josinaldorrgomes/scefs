@@ -8,7 +8,7 @@ import java.util.List;
 public class Item implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Integer item_id;
+	private Integer id;
 	private LocalDate data_de_aquisicao;
 	private LocalDate data_de_cadastro;
 	private String marca;
@@ -20,12 +20,12 @@ public class Item implements Serializable {
 	public Item() {
 	}
 
-	public Integer getItem_id() {
-		return item_id;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setItem_id(Integer item_id) {
-		this.item_id = item_id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public LocalDate getData_de_aquisicao() {
@@ -88,7 +88,7 @@ public class Item implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((item_id == null) ? 0 : item_id.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -101,10 +101,10 @@ public class Item implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		if (item_id == null) {
-			if (other.item_id != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!item_id.equals(other.item_id))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}

@@ -19,9 +19,9 @@
 						<div class="card-body">
 							<form action="alterarItem" method="post">
 								<div class="form-group row">
-									<label for="item_id" class="col-sm-2 col-form-label">Id</label>
+									<label for="id" class="col-sm-2 col-form-label">Id</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control" name="item_id" value="${item.item_id}" readonly>
+										<input type="text" class="form-control" name="id" value="${item.id}" readonly>
 									</div>
 								</div>
 			                    <div class="form-group row">
@@ -56,9 +56,9 @@
 									</div>
 								</div>
 			                    <div class="form-group row">
-									<label for="local" class="col-sm-2 col-form-label">Local</label>
+									<label for="nome" class="col-sm-2 col-form-label">Local</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control" name="local" value="${item.local.nome}" readonly>
+										<input type="text" class="form-control" name="nome" value="${item.local.nome}" readonly>
 									</div>
 								</div>
 								<div class="form-group row">

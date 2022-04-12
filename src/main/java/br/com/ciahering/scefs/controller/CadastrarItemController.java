@@ -28,15 +28,12 @@ public class CadastrarItemController extends HttpServlet {
 			item.setMarca(request.getParameter("marca"));
 			item.setModelo(request.getParameter("modelo"));
 			item.setPatrimonio(Integer.valueOf(request.getParameter("patrimonio")));
-
 			Local local = new Local();
-			local.setLocal_id(Integer.valueOf(request.getParameter("local_id")));
+			local.setId(Integer.valueOf(request.getParameter("local_id")));
 			item.setLocal(local);
 			ItemRepository repository = new ItemRepository(connection);
 			repository.addItem(item);
-
 			request.getRequestDispatcher("cadastrar-item.jsp").forward(request, response);
-			
 		} catch (ServletException | IOException e) {
 			new RuntimeException("Ocorreu um erro ao tentar cadastrar um novo item.", e);
 		}

@@ -23,14 +23,14 @@ public class AlterarItemController extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			Item item = new Item();
-			item.setItem_id(Integer.valueOf(request.getParameter("item_id")));
+			item.setId(Integer.valueOf(request.getParameter("id")));
 			item.setData_de_aquisicao(LocalDate.parse(request.getParameter("data_de_aquisicao")));
 			item.setData_de_cadastro(LocalDate.parse(request.getParameter("data_de_cadastro")));
 			item.setMarca(request.getParameter("marca"));
 			item.setModelo(request.getParameter("modelo"));
 			item.setPatrimonio(Integer.valueOf(request.getParameter("patrimonio")));
 			Local local = new Local();
-			local.setLocal_id(Integer.valueOf(request.getParameter("local_id")));
+			local.setNome(request.getParameter("nome"));
 			item.setLocal(local);
 			Connection connection = (Connection) request.getAttribute("connection");
 			repository = new ItemRepository(connection);

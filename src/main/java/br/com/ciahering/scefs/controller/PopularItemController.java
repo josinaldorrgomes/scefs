@@ -16,17 +16,16 @@ import br.com.ciahering.scefs.repository.ItemRepository;
 public class PopularItemController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	ItemRepository repository = new ItemRepository();
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			Item item = new Item();
-			item.setItem_id(Integer.valueOf(request.getParameter("item_id")));
 			Connection connection = (Connection) request.getAttribute("connection");
-			item = new ItemRepository(connection).getItemById(item);
+			Item item = new ItemRepository(connection).getItemById(Integer.valueOf(request.getParameter("id")));
 			request.setAttribute("item", item);
 			request.getRequestDispatcher("alterar-item.jsp").forward(request, response);
 		} catch (ServletException | IOException e) {
-			new RuntimeException("Verificar a comunicação e passagem de parâmetros.", e);
+			new RuntimeException("Ocorreu um erro ao popular os dados do item. Id = " + request.getParameter("id"), e);
 		}
 	}
 

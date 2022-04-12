@@ -7,7 +7,7 @@ import br.com.ciahering.scefs.enums.TipoUsuario;
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Integer usuario_id;
+	private Integer id;
 	private String login;
 	private String senha;
 	private TipoUsuario tipo;
@@ -22,12 +22,12 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 
-	public Integer getUsuario_id() {
-		return usuario_id;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setUsuario_id(Integer usuario_id) {
-		this.usuario_id = usuario_id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getLogin() {
@@ -66,7 +66,7 @@ public class Usuario implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((usuario_id == null) ? 0 : usuario_id.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -79,10 +79,10 @@ public class Usuario implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (usuario_id == null) {
-			if (other.usuario_id != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!usuario_id.equals(other.usuario_id))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}

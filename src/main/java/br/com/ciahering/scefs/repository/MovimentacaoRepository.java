@@ -30,7 +30,7 @@ public class MovimentacaoRepository {
 			stmt.setString(2, movimentacao.getTipo());
 			stmt.setString(3, movimentacao.getOrigem());
 			stmt.setString(4, movimentacao.getDestino());
-			stmt.setInt(5, movimentacao.getItem().getItem_id());
+			stmt.setInt(5, movimentacao.getItem().getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
@@ -42,34 +42,34 @@ public class MovimentacaoRepository {
 		try {
 			List<Movimentacao> movimentacoes = new ArrayList<Movimentacao>();
 			PreparedStatement stmt = connection.prepareStatement(
-					"SELECT m.movimentacao_id, m.data, m.tipo, m.origem, m.destino, m.item_id FROM public.movimentacao m ON (item_id=?);");
-			stmt.setInt(1, item.getItem_id());
+					"SELECT * FROM public.movimentacao INNER JOIN public.item i ON (i.id=?);");
+			stmt.setInt(1, item.getId());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Movimentacao movimentacao = new Movimentacao();
-				movimentacao.setMovimentacao_id(rs.getInt("id"));
+				movimentacao.setId(rs.getInt("id"));
 				movimentacao.setData(rs.getDate("data").toLocalDate());
 				movimentacao.setTipo(rs.getString("tipo"));
 				movimentacao.setOrigem(rs.getString("origem"));
 				movimentacao.setDestino(rs.getString("destino"));
 
 				Item itemSgbd = new Item();
-				itemSgbd.setItem_id(rs.getInt("item_id"));
+				itemSgbd.setId(rs.getInt("id"));
 				movimentacao.setItem(itemSgbd);
 				movimentacoes.add(movimentacao);
 			}
 			stmt.close();
 			return movimentacoes;
 		} catch (SQLException e) {
-			throw new RuntimeException("Ocorreu uma Exception no getLista do MovimentacaoDAO...", e);
+			throw new RuntimeException("Ocorreu um erro ao listar as movimentações do item de id: " + item.getId(), e);
 		}
 	}
 
 	public void updateMovimentacao(Movimentacao movimentacao) {
 		try {
 			PreparedStatement stmt = connection.prepareStatement(
-					"UPDATE public.movimentacao m SET m.data=?, m.origem=?, m.destino=?, m.tipo=? ON (movimentacao_id=?);");
-			stmt.setInt(5, movimentacao.getMovimentacao_id());
+					"UPDATE public.movimentacao m SET m.data=?, m.origem=?, m.destino=?, m.tipo=? ON (mo.id=?);");
+			stmt.setInt(5, movimentacao.getId());
 			stmt.setDate(1, Date.valueOf(movimentacao.getData()));
 			stmt.setString(2, movimentacao.getOrigem());
 			stmt.setString(3, movimentacao.getDestino());
@@ -83,12 +83,12 @@ public class MovimentacaoRepository {
 
 	public void deleteMovimentacao(Movimentacao movimentacao) {
 		try {
-			PreparedStatement stmt = connection.prepareStatement("DELETE FROM public.movimentacao ON movimentacao_id =?;");
-			stmt.setInt(1, movimentacao.getMovimentacao_id());
+			PreparedStatement stmt = connection.prepareStatement("DELETE FROM public.movimentacao ON (id =?);");
+			stmt.setInt(1, movimentacao.getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
-			throw new RuntimeException("Ocorreu uma Exception no removerMovimentacao.", e);
+			throw new RuntimeException("Ocorreu uma Exception no deleteMovimentacao.", e);
 		}
 	}
 
@@ -97,17 +97,17 @@ public class MovimentacaoRepository {
 		try {
 			PreparedStatement stmt = connection.prepareStatement(
 					"SELECT m.id, m.data, m.tipo, m.origem, m.destino, m.item_id FROM public.movimentacao m INNER JOIN public.item i ON (m.id=? AND m.item_id=i.id);");
-			stmt.setInt(1, movimentacao.getMovimentacao_id());
+			stmt.setInt(1, movimentacao.getId());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				movimentacaoSgbd.setMovimentacao_id(rs.getInt("movimentacao_id"));
+				movimentacaoSgbd.setId(rs.getInt("id"));
 				movimentacaoSgbd.setData(rs.getDate("data").toLocalDate());
 				movimentacaoSgbd.setOrigem(rs.getString("origem"));
 				movimentacaoSgbd.setDestino(rs.getString("destino"));
 				movimentacaoSgbd.setTipo(rs.getString("tipo"));
 
 				Item item = new Item();
-				item.setItem_id(rs.getInt("item_id"));
+				item.setId(rs.getInt("id"));
 				movimentacaoSgbd.setItem(item);
 			}
 			stmt.close();

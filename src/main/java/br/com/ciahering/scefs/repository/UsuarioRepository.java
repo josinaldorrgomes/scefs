@@ -24,7 +24,7 @@ public class UsuarioRepository {
 			stmt.setString(1, usuario.getLogin());
 			stmt.setString(2, usuario.getSenha());
 			stmt.setInt(3, usuario.getTipo().getCod());
-			stmt.setInt(4, usuario.getLocal().getLocal_id());
+			stmt.setInt(4, usuario.getLocal().getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {

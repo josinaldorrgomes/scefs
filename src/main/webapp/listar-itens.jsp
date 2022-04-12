@@ -21,6 +21,7 @@
 								<table class="table">
 									<thead>
 										<tr>
+											<th>Id</th>
 											<th>Data de aquisição</th>
 											<th>Data de cadastro</th>
 											<th>Marca</th>
@@ -33,6 +34,7 @@
 									<c:forEach var="item" items="${sessionScope.itens}">
 										<tbody>
 											<tr>
+												<td>${item.id}</td>
 												<td>${item.data_de_aquisicao}</td>
 												<td>${item.data_de_cadastro}</td>
 												<td>${item.marca}</td>
@@ -43,9 +45,9 @@
 													<div class="dropdown">
 														<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/settings.svg" class="img-fluid"></a>
 														<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-															<li><a class="dropdown-item" href="popularItem?item_id=${item.item_id}"><i data-feather="edit"></i> Editar</a></li>
-															<li><a class="dropdown-item" href="cadastrarMovimentacao?item_id=${item.item_id}"><i data-feather="plus"></i> Cadastrar movimentação</a></li>
-															<li><a class="dropdown-item" href="movimentacoes?item_id=${item.item_id}"><i data-feather="list"></i> Listar movimentações</a></li>
+															<li><a class="dropdown-item" href="popularItem?id=${item.id}"><i data-feather="edit"></i> Editar</a></li>
+															<li><a class="dropdown-item" href="cadastrarMovimentacao?id=${item.id}"><i data-feather="plus"></i> Cadastrar movimentação</a></li>
+															<li><a class="dropdown-item" href="movimentacoes?id=${item.id}"><i data-feather="list"></i> Listar movimentações</a></li>
 															<li><a class="dropdown-item" href="#"><i data-feather="trash-2"></i> Excluir</a></li>
 														</ul>
 													</div>

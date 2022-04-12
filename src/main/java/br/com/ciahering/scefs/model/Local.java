@@ -7,7 +7,7 @@ import java.util.List;
 public class Local implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Integer local_id;
+	private Integer id;
 	private String nome;
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 	private List<Item> itens = new ArrayList<Item>();
@@ -15,12 +15,12 @@ public class Local implements Serializable {
 	public Local() {
 	}
 
-	public Integer getLocal_id() {
-		return local_id;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setLocal_id(Integer local_id) {
-		this.local_id = local_id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -51,7 +51,7 @@ public class Local implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((local_id == null) ? 0 : local_id.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -64,10 +64,10 @@ public class Local implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Local other = (Local) obj;
-		if (local_id == null) {
-			if (other.local_id != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!local_id.equals(other.local_id))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}

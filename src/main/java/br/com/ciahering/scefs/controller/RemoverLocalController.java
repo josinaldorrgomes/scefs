@@ -18,7 +18,7 @@ public class RemoverLocalController extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			Local local = new Local();
-			local.setLocal_id(Integer.valueOf(request.getParameter("local_id")));
+			local.setId(Integer.valueOf(request.getParameter("id")));
 			Connection connection = (Connection) request.getAttribute("connection");
 			LocalRepository repository = new LocalRepository(connection);
 			repository.deleteLocal(local);

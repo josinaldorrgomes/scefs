@@ -15,7 +15,7 @@ public class LogoutController extends HttpServlet {
 			request.getSession().invalidate();
 			response.sendRedirect("login.jsp");
 		} catch (Exception e) {
-			throw new RuntimeException("Ocorreu um erro na classe LogoutUsuarioLogica...", e);
+			throw new RuntimeException("Ocorreu um erro no logout da sessão id = " + request.getSession().getId(), e);
 		}
 	}
 }

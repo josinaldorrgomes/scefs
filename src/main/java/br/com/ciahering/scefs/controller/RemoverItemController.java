@@ -18,7 +18,7 @@ public class RemoverItemController extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			Item item = new Item();
-			item.setItem_id(Integer.valueOf(request.getParameter("item_id")));
+			item.setId(Integer.valueOf(request.getParameter("id")));
 			Connection connection = (Connection) request.getAttribute("connection");
 			ItemRepository itemDao = new ItemRepository(connection);
 			itemDao.deleteItem(item);

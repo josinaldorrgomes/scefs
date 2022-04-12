@@ -34,17 +34,17 @@ public class ItemRepository {
 			stmt.setString(3, item.getMarca());
 			stmt.setString(4, item.getModelo());
 			stmt.setInt(5, item.getPatrimonio());
-			stmt.setInt(6, item.getLocal().getLocal_id());
+			stmt.setInt(6, item.getLocal().getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException("Ocorreu um erro ao tentar adicionar um novo item. "
-					+ "Segue as informações enviadas pela View. Data de aquisição: " + item.getData_de_aquisicao() + ", "
+					+ "Segue as informações enviadas pelo front-end. Data de aquisição: " + item.getData_de_aquisicao() + ", "
 							+ "data de cadastro: " + item.getData_de_cadastro() + ", "
 							+ "marca: " + item.getMarca() + ", "
 							+ "modelo: " + item.getModelo() + ", "
 							+ "patrimônio: " + item.getPatrimonio() + ", "
-							+ "local: " + item.getLocal(), e);
+							+ "local: " + item.getLocal().getId(), e);
 		}
 	}
 
@@ -52,11 +52,11 @@ public class ItemRepository {
 		try {
 			List<Item> itens = new ArrayList<>();
 			PreparedStatement stmt = connection.prepareStatement(
-					"SELECT i.item_id, i.data_de_aquisicao, i.data_de_cadastro, i.marca, i.modelo, i.patrimonio, l.nome FROM public.item i INNER JOIN public.local l ON (i.local_id = l.local_id);");
+					"SELECT i.id, i.data_de_aquisicao, i.data_de_cadastro, i.marca, i.modelo, i.patrimonio, l.nome FROM public.item i INNER JOIN public.local l ON (i.local_id = l.id);");
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Item item = new Item();
-				item.setItem_id(rs.getInt("item_id"));
+				item.setId(rs.getInt("id"));
 				item.setData_de_aquisicao(rs.getDate("data_de_cadastro").toLocalDate());
 				item.setData_de_cadastro(rs.getDate("data_de_cadastro").toLocalDate());
 				item.setMarca(rs.getString("marca"));
@@ -77,15 +77,13 @@ public class ItemRepository {
 	public void updateItem(Item item) {
 		try {
 			PreparedStatement stmt = connection.prepareStatement(
-					"UPDATE public.item i SET i.dataDeAquisicao=?, i.data_de_cadastro=?, i.marca=?, i.modelo=?, i.patrimonio=?, l.local_id=? INNER JOIN public.local l ON (l.nome=? AND i.item_id=?);");
-			stmt.setInt(8, item.getItem_id());
+					"UPDATE public.item SET dataDeAquisicao=?, data_de_cadastro=?, marca=?, modelo=?, patrimonio=? WHERE id=?;");
+			stmt.setInt(6, item.getId());
 			stmt.setDate(1, Date.valueOf(item.getData_de_aquisicao()));
 			stmt.setDate(2, Date.valueOf(item.getData_de_cadastro()));
 			stmt.setString(3, item.getMarca());
 			stmt.setString(4, item.getModelo());
 			stmt.setInt(5, item.getPatrimonio());
-			stmt.setString(6, item.getLocal().getNome());
-			stmt.setInt(7, item.getLocal().getLocal_id());
 			stmt.executeUpdate();
 			stmt.close();
 		} catch (SQLException e) {
@@ -95,54 +93,54 @@ public class ItemRepository {
 
 	public void deleteItem(Item item) {
 		try {
-			PreparedStatement stmt = connection.prepareStatement("DELETE FROM public.item WHERE item_id=?;");
-			stmt.setInt(1, item.getItem_id());
+			PreparedStatement stmt = connection.prepareStatement("DELETE FROM public.item i WHERE i.id=?;");
+			stmt.setInt(1, item.getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
-			throw new RuntimeException("Ocorreu uma Exception no removerItem.", e);
+			throw new RuntimeException("Ocorreu um erro ao tentar deletar o item de id: " + item.getId(), e);
 		}
 	}
 
-	public Item getItemById(Item item) {
-		Item itemSgbd = new Item();
+	public Item getItemById(Integer id) {
+		Item item = new Item();
 		try {
 			PreparedStatement stmt = connection.prepareStatement(
-					"SELECT i.item_id, i.data_de_aquisicao, i.data_de_cadastro, i.patrimonio, i.marca, i.modelo, l.local_id, l.nome FROM public.item i INNER JOIN public.local l ON (i.local_id = l.local_id AND i.item_id=?);");
-			stmt.setInt(1, item.getItem_id());
+					"SELECT i.id, i.data_de_aquisicao, i.data_de_cadastro, i.patrimonio, i.marca, i.modelo, l.id, l.nome FROM public.item i INNER JOIN public.local l ON (i.local_id = l.id AND i.id=?);");
+			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				itemSgbd.setItem_id(rs.getInt("item_id"));
-				itemSgbd.setData_de_aquisicao(rs.getDate("data_de_aquisicao").toLocalDate());
-				itemSgbd.setData_de_cadastro(rs.getDate("data_de_cadastro").toLocalDate());
-				itemSgbd.setMarca(rs.getString("marca"));
-				itemSgbd.setModelo(rs.getString("modelo"));
-				itemSgbd.setPatrimonio(rs.getInt("patrimonio"));
+				item.setId(rs.getInt("id"));
+				item.setData_de_aquisicao(rs.getDate("data_de_aquisicao").toLocalDate());
+				item.setData_de_cadastro(rs.getDate("data_de_cadastro").toLocalDate());
+				item.setMarca(rs.getString("marca"));
+				item.setModelo(rs.getString("modelo"));
+				item.setPatrimonio(rs.getInt("patrimonio"));
 				Local local = new Local();
-				local.setLocal_id(rs.getInt("local_id"));
+				local.setId(rs.getInt("id"));
 				local.setNome(rs.getString("nome"));
-				itemSgbd.setLocal(local);
+				item.setLocal(local);
 			}
 			stmt.close();
 		} catch (SQLException e) {
-			throw new RuntimeException("Erro ao buscar o item " + item.getItem_id() + ". Verificar!", e);
+			throw new RuntimeException("Erro ao buscar o item de id " + item.getId() + ". Verificar!", e);
 		}
-		return itemSgbd;
+		return item;
 	}
 	
-	public Item getItemByPatrimonio(Item i) {
+	public Item getItemByPatrimonio(Integer patrimonio) {
 		Item item = new Item();
 		try {
 			PreparedStatement stmt = connection.prepareStatement(
 					"SELECT i.patrimonio FROM public.item i ON (i.patrimonio=?);");
-			stmt.setInt(1, item.getPatrimonio());
+			stmt.setInt(1, patrimonio);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				item.setPatrimonio(rs.getInt("patrimonio"));
 			}
 			stmt.close();
 		} catch (SQLException e) {
-			throw new RuntimeException("Ocorreu um erro ao buscar o patrimônio.", e);
+			throw new RuntimeException("Ocorreu um erro ao buscar o patrimônio " + patrimonio, e);
 		}
 		return item;
 	}
@@ -151,7 +149,7 @@ public class ItemRepository {
 		try {
 			List<ItemDTO> itensPorLocal = new ArrayList<ItemDTO>();
 			PreparedStatement stmt = connection.prepareStatement(
-					"SELECT l.nome AS local, COUNT(i.patrimonio) AS quantidade FROM (public.item i INNER JOIN public.local l ON ((l.local_id = i.local_id))) GROUP BY l.nome;");
+					"SELECT l.nome AS local, COUNT(i.patrimonio) AS quantidade FROM (public.item i INNER JOIN public.local l ON ((l.id = i.local_id))) GROUP BY l.nome;");
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				ItemDTO itemDto = new ItemDTO();

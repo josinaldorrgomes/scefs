@@ -21,7 +21,7 @@ public class ListarItemController extends HttpServlet {
 		try {
 			Connection connection = (Connection) request.getAttribute("connection");
 			repository = new ItemRepository(connection);
-			Item item = repository.getItemByPatrimonio((Item) request.getAttribute("patrimonio"));
+			Item item = repository.getItemByPatrimonio((Item) request.getAttribute("id"));
 			HttpSession httpSession = request.getSession();
 			httpSession.setAttribute("item", item);
 			request.getRequestDispatcher("alterar-item.jsp").forward(request, response);

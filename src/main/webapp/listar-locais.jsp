@@ -29,13 +29,13 @@
 									<c:forEach var="local" items="${sessionScope.locais}">
 										<tbody>
 											<tr>
-												<td>${local.local_id}</td>
+												<td>${local.id}</td>
 												<td>${local.nome}</td>
 												<td class="text-center">
 													<div class="dropdown">
 														<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/settings.svg" class="img-fluid"></a>
 														<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-															<li><a class="dropdown-item" href="popularLocal?local_id=${local.local_id}"><i data-feather="edit"></i> Editar</a></li>
+															<li><a class="dropdown-item" href="popularLocal?id=${local.id}"><i data-feather="edit"></i> Editar</a></li>
 															<li><a class="dropdown-item" href="#"><i data-feather="trash-2"></i> Excluir</a></li>
 														</ul>
 													</div>

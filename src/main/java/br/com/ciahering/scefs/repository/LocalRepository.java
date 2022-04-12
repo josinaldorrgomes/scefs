@@ -34,11 +34,12 @@ public class LocalRepository {
 	public List<Local> getLocais() {
 		try {
 			List<Local> locais = new ArrayList<Local>();
-			PreparedStatement stmt = connection.prepareStatement("SELECT l.local_id, l.nome FROM public.local l ORDER BY l.local_id;");
+			PreparedStatement stmt = connection
+					.prepareStatement("SELECT l.id, l.nome FROM public.local l ORDER BY l.id;");
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Local local = new Local();
-				local.setLocal_id(rs.getInt("local_id"));
+				local.setId(rs.getInt("id"));
 				local.setNome(rs.getString("nome"));
 				locais.add(local);
 			}
@@ -51,56 +52,62 @@ public class LocalRepository {
 
 	public void updateLocal(Local local) {
 		try {
-			PreparedStatement stmt = connection.prepareStatement("UPDATE public.local l SET l.nome=? ON (l.local_id=?);");
-			stmt.setInt(2, local.getLocal_id());
+			PreparedStatement stmt = connection.prepareStatement("UPDATE public.local SET nome=? WHERE id=?;");
+			stmt.setInt(2, local.getId());
 			stmt.setString(1, local.getNome());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
-			throw new RuntimeException("Ocorreu um erro ao tentar atualizar as informações do Local ID: " + local.getLocal_id() + ", Nome: " + local.getNome(), e);
+			throw new RuntimeException("Ocorreu um erro ao tentar atualizar as informações do Local ID: "
+					+ local.getId() + ", Nome: " + local.getNome(), e);
 		}
 	}
 
 	public void deleteLocal(Local local) {
 		try {
-			PreparedStatement stmt = connection.prepareStatement("DELETE FROM public.local ON (local_id=?);");
-			stmt.setInt(1, local.getLocal_id());
+			PreparedStatement stmt = connection.prepareStatement("DELETE FROM public.local l ON (l.id=?);");
+			stmt.setInt(1, local.getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
-			throw new RuntimeException("Ocorreu uma Exception ao tentar deletar um local.", e);
+			throw new RuntimeException("Ocorreu uma Exception ao tentar deletar o local de id = " + local.getId(), e);
 		}
 	}
 
-	public Local getLocalById(Local local) {
+	public Local getLocalById(Integer id) {
+		Local local = new Local();
 		try {
-			PreparedStatement stmt = connection.prepareStatement("SELECT l.local_id, l.nome FROM local l WHERE l.local_id=?;");
-			stmt.setInt(1, local.getLocal_id());
+			PreparedStatement stmt = connection
+					.prepareStatement("SELECT l.id, l.nome FROM public.local l WHERE l.id=?;");
+			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				local.setLocal_id(rs.getInt("local_id"));
+				local.setId(rs.getInt("id"));
 				local.setNome(rs.getString("nome"));
 			}
 			stmt.close();
 		} catch (SQLException e) {
-			throw new RuntimeException("Ocorreu um erro ao tentar atualizar as informações do Local ID: " + local.getLocal_id(), e);
+			throw new RuntimeException(
+					"Ocorreu um erro ao buscar o Local de id: " + local.getId(), e);
 		}
 		return local;
 	}
 
-	public Local getLocalByNome(String local) {
+	public Local getLocalByNome(String nome) {
 		Local localSgbd = new Local();
 		try {
-			PreparedStatement stmt = connection.prepareStatement("SELECT l.local_id, l.nome FROM local l ON (l.nome=?);");
-			stmt.setString(1, local);
+			PreparedStatement stmt = connection
+					.prepareStatement("SELECT l.id, l.nome FROM local l ON (l.nome=?);");
+			stmt.setString(1, nome);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				localSgbd.setLocal_id(rs.getInt("local_id"));
+				localSgbd.setId(rs.getInt("id"));
 				localSgbd.setNome(rs.getString("nome"));
 			}
 			stmt.close();
 		} catch (SQLException e) {
-			throw new RuntimeException("Ocorreu um erro ao tentar atualizar as informações do Local NOME: " + localSgbd.getNome(), e);
+			throw new RuntimeException(
+					"Ocorreu um erro ao buscar o Local de nome: " + localSgbd.getNome(), e);
 		}
 		return localSgbd;
 	}
