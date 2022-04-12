@@ -132,7 +132,7 @@ public class ItemRepository {
 		Item item = new Item();
 		try {
 			PreparedStatement stmt = connection.prepareStatement(
-					"SELECT i.patrimonio FROM public.item i ON (i.patrimonio=?);");
+					"SELECT i.patrimonio FROM public.item i WHERE i.patrimonio=?;");
 			stmt.setInt(1, patrimonio);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
