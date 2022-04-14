@@ -52,7 +52,7 @@ public class ItemRepository {
 		try {
 			List<Item> itens = new ArrayList<>();
 			PreparedStatement stmt = connection.prepareStatement(
-					"SELECT i.id, i.data_de_aquisicao, i.data_de_cadastro, i.marca, i.modelo, i.patrimonio, l.nome FROM public.item i INNER JOIN public.local l ON (i.local_id = l.id);");
+					"SELECT i.id, i.data_de_aquisicao, i.data_de_cadastro, i.marca, i.modelo, i.patrimonio, l.nome FROM public.item i INNER JOIN public.local l ON (i.local_id = l.id) ORDER BY i.id;");
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Item item = new Item();

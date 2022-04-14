@@ -21,7 +21,7 @@
 								<table class="table">
 									<thead>
 										<tr>
-											<th>Id</th>
+											<th>#</th>
 											<th>Nome</th>
 											<th class="text-center">Opções</th>
 										</tr>

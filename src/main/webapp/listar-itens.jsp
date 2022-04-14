@@ -21,7 +21,7 @@
 								<table class="table">
 									<thead>
 										<tr>
-											<th>Id</th>
+											<th>#</th>
 											<th>Data de aquisição</th>
 											<th>Data de cadastro</th>
 											<th>Marca</th>
