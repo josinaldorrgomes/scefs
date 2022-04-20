@@ -16,13 +16,7 @@
 							<h6 class="card-title">Cadastrar movimentação</h6>
 						</div>
 						<div class="card-body">
-							<form action="Controller" method="post">
-								<div class="form-group row">
-									<label for="item" class="col-sm-2 col-form-label">Item</label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" name="item" readonly="readonly" value="${item.id}" />
-									</div>
-								</div>
+							<form action="cadastrarMovimentacao" method="post">
 								<div class="form-group row">
 									<label for="data" class="col-sm-2 col-form-label">Data de cadastro</label>
 									<div class="col-sm-4">
@@ -34,38 +28,38 @@
 									<div class="col-sm-4">
 										<select class="form-control" name="tipo">
 											<option selected>Selecionar...</option>
-											<option value="Transferência">Transferência</option>
-											<option value="Empréstimo">Empréstimo</option>
+											<option value="DEVOLUCAO">Devolução ao fornecedor</option>
+											<option value="CONSERTO">Remessa para conserto</option>
+											<option value="EMPRESTIMO">Remessa para empréstimo</option>
+											<option value="TRANSFERENCIA">Transferência de patrimônio</option>
 										</select>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="origem" class="col-sm-2 col-form-label">Local de origem</label>
+									<label for="local_id" class="col-sm-2 col-form-label">Local de destino</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control" name="origem" readonly="readonly" value="${item.local.nome}" />
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="destino" class="col-sm-2 col-form-label">Local de destino</label>
-									<div class="col-sm-4">
-										<select class="form-control" name="destino">
+										<select class="form-control" name="local_id">
 											<option selected>Selecionar...</option>
-											<option value="Anápolis-GO">Anápolis-GO</option>
-											<option value="Bom Retiro-SC">Bom Retiro-SC</option>
-											<option value="Goianésia-GO">Goianésia-GO</option>
-											<option value="Itororó-SC">Itororó-SC</option>
-											<option value="Matriz-SC">Matriz-SC</option>
-											<option value="Paraúna-GO">Paraúna-GO</option>
-											<option value="SLMB-GO">SLMB-GO</option>
-											<option value="São Paulo-SP">São Paulo-SP</option>
+											<option value="1">HRG CD ANÁPOLIS-GO</option>
+											<option value="2">HRG BOM RETIRO-SC</option>
+											<option value="3">HRG GOIANÉSIA-GO</option>
+											<option value="4">HRG ITORORÓ-SC</option>
+											<option value="5">HRG MATRIZ-SC</option>
+											<option value="6">HRG PARAÚNA-GO</option>
+											<option value="7">HRG SÃO LUÍS-GO</option>
+											<option value="8">HRG SÃO PAULO-SP</option>
 										</select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="item_id" class="col-sm-2 col-form-label">Item</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" name="item_id" readonly="readonly" value="${movimentacao.item_id}" />
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="" class="col-sm-2 col-form-label"></label>
 									<div class="col-sm-6 d-flex justify-content-start">
-										<input type="hidden" name="logica" value="CadastrarMovimentacaoLogica" />
-										<input type="hidden" name="metodo" value="cadastrar" />
 										<button type="submit" class="btn btn-outline-primary">Confirmar cadastro</button>
 										<button type="reset" class="btn btn-outline-secondary">Limpar tudo</button>
 									</div>

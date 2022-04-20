@@ -9,8 +9,7 @@ public class Movimentacao implements Serializable {
 	private Integer id;
 	private LocalDate data;
 	private String tipo;
-	private String origem;
-	private String destino;
+	private Local local;
 	private Item item;
 
 	public Movimentacao() {
@@ -40,20 +39,12 @@ public class Movimentacao implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public String getOrigem() {
-		return origem;
+	public Local getLocal() {
+		return local;
 	}
 
-	public void setOrigem(String origem) {
-		this.origem = origem;
-	}
-
-	public String getDestino() {
-		return destino;
-	}
-
-	public void setDestino(String destino) {
-		this.destino = destino;
+	public void setLocal(Local local) {
+		this.local = local;
 	}
 
 	public Item getItem() {

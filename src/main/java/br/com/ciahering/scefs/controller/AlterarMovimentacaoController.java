@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.ciahering.scefs.model.Item;
+import br.com.ciahering.scefs.model.Local;
 import br.com.ciahering.scefs.model.Movimentacao;
 import br.com.ciahering.scefs.repository.MovimentacaoRepository;
 
@@ -23,14 +25,18 @@ public class AlterarMovimentacaoController extends HttpServlet {
 			movimentacao.setId(Integer.valueOf(request.getParameter("id")));
 			movimentacao.setData(LocalDate.parse(request.getParameter("data")));
 			movimentacao.setTipo(request.getParameter("tipo"));
-			movimentacao.setOrigem(request.getParameter("origem"));
-			movimentacao.setDestino(request.getParameter("destino"));
+			Local local = new Local();
+			local.setId(Integer.valueOf(request.getParameter("local_id")));
+			movimentacao.setLocal(local);
+			Item item = new Item();
+			item.setId(Integer.valueOf(request.getParameter("item_id")));
+			movimentacao.setItem(item);
 			Connection connection = (Connection) request.getAttribute("connection");
 			MovimentacaoRepository movimentacaoDao = new MovimentacaoRepository(connection);
 			movimentacaoDao.updateMovimentacao(movimentacao);
 			response.sendRedirect("listar-movimentacoes-por-item.jsp");
 		} catch (IOException e) {
-			new RuntimeException("Ocorreu um erro ao tentar alterar o item de id: " + request.getParameter("id"), e);
+			new RuntimeException("Ocorreu um erro ao tentar alterar a movimentação de id: " + request.getParameter("id"), e);
 		}
 	}
 }

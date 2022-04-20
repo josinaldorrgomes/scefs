@@ -1,18 +1,16 @@
 package br.com.ciahering.scefs.enums;
 
-public enum TipoUsuario {
+public enum TipoMovimentacao {
 
-	DIRETOR(1, "DIRETOR"),
-	GERENTE(2, "GERENTE"),
-	COORDENADOR(3, "COORDENADOR"),
-	LIDER(4, "LÍDER"),
-	ANALISTA(5, "ANALISTA"),
-	TECNICO(6, "TÉCNICO");
+	DEVOLUCAO(1, "Devolução ao fornecedor"),
+	CONSERTO(2, "Remessa para conserto"),
+	EMPRESTIMO(3, "Remessa para empréstimo"),
+	TRANSFERENCIA(4, "Transferência de patrimônio");
 
 	private int cod;
 	private String descricao;
 
-	private TipoUsuario(int cod, String descricao) {
+	private TipoMovimentacao(int cod, String descricao) {
 		this.cod = cod;
 		this.descricao = descricao;
 	}

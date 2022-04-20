@@ -46,8 +46,8 @@
 														<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/settings.svg" class="img-fluid"></a>
 														<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 															<li><a class="dropdown-item" href="popularItem?id=${item.id}"><i data-feather="edit"></i> Editar</a></li>
-															<li><a class="dropdown-item" href="cadastrarMovimentacao?id=${item.id}"><i data-feather="plus"></i> Cadastrar movimentação</a></li>
-															<li><a class="dropdown-item" href="movimentacoes?id=${item.id}"><i data-feather="list"></i> Listar movimentações</a></li>
+															<li><a class="dropdown-item" href="popularMovimentacao?item_id=${item.id}"><i data-feather="plus"></i> Cadastrar movimentação</a></li>
+															<li><a class="dropdown-item" href="movimentacoes?item_id=${item.id}"><i data-feather="list"></i> Listar movimentações</a></li>
 															<li><a class="dropdown-item" href="#"><i data-feather="trash-2"></i> Excluir</a></li>
 														</ul>
 													</div>

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.ciahering.scefs.model.Item;
+import br.com.ciahering.scefs.model.Local;
 import br.com.ciahering.scefs.model.Movimentacao;
 
 public class MovimentacaoRepository {
@@ -25,11 +26,10 @@ public class MovimentacaoRepository {
 	public void addMovimentacao(Movimentacao movimentacao) {
 		try {
 			PreparedStatement stmt = connection.prepareStatement(
-					"INSERT INTO public.movimentacao(data, tipo, origem, destino, item_id) VALUES (?, ?, ?, ?, ?);");
+					"INSERT INTO public.movimentacao(data, tipo, local_id, item_id) VALUES (?, ?, ?, ?, ?);");
 			stmt.setDate(1, Date.valueOf(movimentacao.getData()));
 			stmt.setString(2, movimentacao.getTipo());
-			stmt.setString(3, movimentacao.getOrigem());
-			stmt.setString(4, movimentacao.getDestino());
+			stmt.setInt(3, movimentacao.getLocal().getId());
 			stmt.setInt(5, movimentacao.getItem().getId());
 			stmt.execute();
 			stmt.close();
@@ -50,9 +50,9 @@ public class MovimentacaoRepository {
 				movimentacao.setId(rs.getInt("id"));
 				movimentacao.setData(rs.getDate("data").toLocalDate());
 				movimentacao.setTipo(rs.getString("tipo"));
-				movimentacao.setOrigem(rs.getString("origem"));
-				movimentacao.setDestino(rs.getString("destino"));
-
+				Local local = new Local();
+				local.setId(Integer.valueOf(rs.getString("local_id")));
+				movimentacao.setLocal(local);
 				Item itemSgbd = new Item();
 				itemSgbd.setId(rs.getInt("id"));
 				movimentacao.setItem(itemSgbd);
@@ -68,12 +68,12 @@ public class MovimentacaoRepository {
 	public void updateMovimentacao(Movimentacao movimentacao) {
 		try {
 			PreparedStatement stmt = connection.prepareStatement(
-					"UPDATE public.movimentacao m SET m.data=?, m.origem=?, m.destino=?, m.tipo=? ON (mo.id=?);");
+					"UPDATE public.movimentacao m SET m.data=?, m.tipo=?, m.local_id=?, m.item_id=? ON (m.id=?);");
 			stmt.setInt(5, movimentacao.getId());
 			stmt.setDate(1, Date.valueOf(movimentacao.getData()));
-			stmt.setString(2, movimentacao.getOrigem());
-			stmt.setString(3, movimentacao.getDestino());
-			stmt.setString(4, movimentacao.getTipo());
+			stmt.setString(2, movimentacao.getTipo());
+			stmt.setInt(3, movimentacao.getLocal().getId());
+			stmt.setInt(4, movimentacao.getItem().getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
@@ -96,16 +96,16 @@ public class MovimentacaoRepository {
 		Movimentacao movimentacaoSgbd = new Movimentacao();
 		try {
 			PreparedStatement stmt = connection.prepareStatement(
-					"SELECT m.id, m.data, m.tipo, m.origem, m.destino, m.item_id FROM public.movimentacao m INNER JOIN public.item i ON (m.id=? AND m.item_id=i.id);");
+					"SELECT m.id, m.data, m.tipo, m.local_id, m.item_id FROM public.movimentacao m INNER JOIN public.item i ON (m.id=? AND m.item_id=i.id);");
 			stmt.setInt(1, movimentacao.getId());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				movimentacaoSgbd.setId(rs.getInt("id"));
 				movimentacaoSgbd.setData(rs.getDate("data").toLocalDate());
-				movimentacaoSgbd.setOrigem(rs.getString("origem"));
-				movimentacaoSgbd.setDestino(rs.getString("destino"));
+				Local local = new Local();
+				local.setId(Integer.valueOf(rs.getString("local_id")));
+				movimentacao.setLocal(local);
 				movimentacaoSgbd.setTipo(rs.getString("tipo"));
-
 				Item item = new Item();
 				item.setId(rs.getInt("id"));
 				movimentacaoSgbd.setItem(item);
