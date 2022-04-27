@@ -3,7 +3,7 @@
 <html lang='pt-BR'>
 <head>
 <link href="img/favicon.ico" rel="icon">
-<title>SCEFS | Cia. Hering</title>
+<title>SCEFS | Sistema de Controle de Estoque do Field Service</title>
 </head>
 <body>
 	<c:import url="cabecalho.jsp" />
@@ -26,8 +26,8 @@
 								<div class="form-group row">
 									<label for="tipo" class="col-sm-2 col-form-label">Tipo de movimentação</label>
 									<div class="col-sm-4">
-										<select class="form-control" name="tipo">
-											<option selected>Selecionar...</option>
+										<select class="form-control" name="tipo" required="required">
+											<option selected></option>
 											<option value="DEVOLUCAO">Devolução ao fornecedor</option>
 											<option value="CONSERTO">Remessa para conserto</option>
 											<option value="EMPRESTIMO">Remessa para empréstimo</option>
@@ -38,8 +38,8 @@
 								<div class="form-group row">
 									<label for="local_id" class="col-sm-2 col-form-label">Local de destino</label>
 									<div class="col-sm-4">
-										<select class="form-control" name="local_id">
-											<option selected>Selecionar...</option>
+										<select class="form-control" name="local_id" required="required">
+											<option selected></option>
 											<option value="1">HRG CD ANÁPOLIS-GO</option>
 											<option value="2">HRG BOM RETIRO-SC</option>
 											<option value="3">HRG GOIANÉSIA-GO</option>
@@ -54,7 +54,7 @@
 								<div class="form-group row">
 									<label for="item_id" class="col-sm-2 col-form-label">Item</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control" name="item_id" readonly="readonly" value="${movimentacao.item_id}" />
+										<input type="text" class="form-control" name="item_id" readonly="readonly" value="${item_id}" />
 									</div>
 								</div>
 								<div class="form-group row">

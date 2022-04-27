@@ -27,7 +27,7 @@ public class ConnectionFilter implements Filter {
 			chain.doFilter(request, response);
 			connection.close();
 		} catch (SQLException e) {
-			throw new RuntimeException("Ocorreu um erro de SQLException...", e);
+			throw new RuntimeException("O filtro de conexão apresentou um erro. Verificar!", e);
 		}
 	}
 

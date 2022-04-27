@@ -3,7 +3,7 @@
 <html lang='pt-BR'>
 <head>
 <link href="img/favicon.ico" rel="icon">
-<title>SCEFS | Cia. Hering</title>
+<title>SCEFS | Sistema de Controle de Estoque do Field Service</title>
 </head>
 <body>
 	<c:import url="cabecalho.jsp" />
@@ -32,8 +32,8 @@
 								<div class="form-group row">
 									<label for="tipo" class="col-sm-2 col-form-label">Tipo</label>
 									<div class="col-sm-4">
-										<select class="form-control" name="tipo">
-											<option selected>Selecionar...</option>
+										<select class="form-control" name="tipo" required="required">
+											<option selected></option>
 											<option value="1">Gerente</option>
 											<option value="2">Coordenador</option>
 											<option value="3">Analista</option>
@@ -43,10 +43,10 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="local" class="col-sm-2 col-form-label">Local</label>
+									<label for="local_id" class="col-sm-2 col-form-label">Local</label>
 									<div class="col-sm-4">
-										<select class="form-control" name="local">
-											<option selected>Selecionar...</option>
+										<select class="form-control" name="local_id" required="required">
+											<option selected></option>
 											<option value="1">Anápolis-GO</option>
 											<option value="2">Bom Retiro-SC</option>
 											<option value="3">Goianésia-GO</option>
@@ -61,7 +61,6 @@
 								<div class="form-group row">
 									<label for="" class="col-sm-2 col-form-label"></label>
 									<div class="col-sm-6 d-flex justify-content-start">
-										<input type="hidden" name="logica" value="CadastrarUsuarioLogica" />
 										<button type="submit" class="btn btn-outline-primary">Confirmar cadastro</button>
 										<button type="reset" class="btn btn-outline-secondary">Limpar tudo</button>
 									</div>

@@ -4,7 +4,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/signin.css" rel="stylesheet">
 <link href="img/favicon.ico" rel="icon">
-<title>SCEFS | Cia. Hering</title>
+<title>SCEFS | Sistema de Controle de Estoque do Field Service</title>
 </head>
 <body class="text-center">
 	<div class="container">

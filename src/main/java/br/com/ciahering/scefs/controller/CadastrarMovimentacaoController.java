@@ -20,7 +20,7 @@ public class CadastrarMovimentacaoController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	MovimentacaoRepository repository;
-	
+
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			Movimentacao movimentacao = new Movimentacao();
@@ -37,7 +37,7 @@ public class CadastrarMovimentacaoController extends HttpServlet {
 			repository.addMovimentacao(movimentacao);
 			request.getRequestDispatcher("listar-itens.jsp").forward(request, response);
 		} catch (ServletException | IOException e) {
-			new RuntimeException("Ocorreu um erro ao tentar cadastrar uma nova movimentacao para o item: " 
+			new RuntimeException("Ocorreu um erro ao tentar cadastrar uma nova movimentacao para o item: "
 					+ request.getParameter("item_id"), e);
 		}
 	}

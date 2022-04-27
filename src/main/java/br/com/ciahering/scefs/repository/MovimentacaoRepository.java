@@ -26,15 +26,19 @@ public class MovimentacaoRepository {
 	public void addMovimentacao(Movimentacao movimentacao) {
 		try {
 			PreparedStatement stmt = connection.prepareStatement(
-					"INSERT INTO public.movimentacao(data, tipo, local_id, item_id) VALUES (?, ?, ?, ?, ?);");
+					"INSERT INTO public.movimentacao(data, tipo, local_id, item_id) VALUES (?, ?, ?, ?);");
 			stmt.setDate(1, Date.valueOf(movimentacao.getData()));
 			stmt.setString(2, movimentacao.getTipo());
 			stmt.setInt(3, movimentacao.getLocal().getId());
-			stmt.setInt(5, movimentacao.getItem().getId());
+			stmt.setInt(4, movimentacao.getItem().getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
-			throw new RuntimeException("Ocorreu uma Exception no adicionar do MovimentacaoDAO...", e);
+			throw new RuntimeException("Ocorreu uma Exception no adicionar a nova movimentação. Data: " 
+					+ movimentacao.getData() 
+					+ ", Tipo: " + movimentacao.getTipo() 
+					+ ", Local_id: " + movimentacao.getLocal().getId() 
+					+ ", Item_id: " + movimentacao.getItem().getId(), e);
 		}
 	}
 

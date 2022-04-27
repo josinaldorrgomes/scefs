@@ -3,7 +3,7 @@
 <html lang='pt-BR'>
 <head>
 <link href="img/favicon.ico" rel="icon">
-<title>SCEFS | Cia. Hering</title>
+<title>SCEFS | Sistema de Controle de Estoque do Field Service</title>
 </head>
 <body>
 	<c:import url="cabecalho.jsp" />
@@ -45,8 +45,8 @@
 								<div class="form-group row">
 									<label for="local_id" class="col-sm-2 col-form-label">Local</label>
 									<div class="col-sm-4">
-										<select class="form-control" name="local_id">
-											<option selected>Selecionar...</option>
+										<select class="form-control" name="local_id" required="required">
+											<option selected></option>
 											<option value="1">HRG CD ANÁPOLIS-GO</option>
 											<option value="2">HRG BOM RETIRO-SC</option>
 											<option value="3">HRG GOIANÉSIA-GO</option>

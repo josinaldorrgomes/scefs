@@ -4,7 +4,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/dashboard.css" rel="stylesheet">
 <script src="js/feather.min.js"></script>
-<title>SCEFS | Cia. Hering</title>
+<title>SCEFS | Sistema de Controle de Estoque do Field Service</title>
 </head>
 <body>
 	<header>
@@ -27,7 +27,7 @@
 							<a class="nav-link" href="index.jsp"><i data-feather="home"></i> Início</a>
 						</li>
 					</ul>
-					<h6 class="sidebar-heading d-flex justify-content-start px-3 mt-4 mb-1 text-muted">Usuários</h6>
+					<!-- <h6 class="sidebar-heading d-flex justify-content-start px-3 mt-4 mb-1 text-muted">Usuários</h6>
         			<ul class="nav flex-column">
 						<li class="nav-item">
 							<a class="nav-link" href="#"><i data-feather="plus"></i> Cadastrar usuário</a>
@@ -35,8 +35,8 @@
 						<li class="nav-item">
 							<a class="nav-link" href="#"><i data-feather="list"></i> Listar usuários</a>
 						</li>        			
-        			</ul>
-        			<h6 class="sidebar-heading d-flex justify-content-start px-3 mt-4 mb-1 text-muted">Locais</h6>
+        			</ul> -->
+        			<!-- <h6 class="sidebar-heading d-flex justify-content-start px-3 mt-4 mb-1 text-muted">Locais</h6>
         			<ul class="nav flex-column">
 						<li class="nav-item">
 							<a class="nav-link" href="cadastrar-local.jsp"><i data-feather="plus"></i> Cadastrar local</a>
@@ -44,7 +44,7 @@
 						<li class="nav-item">
 							<a class="nav-link" href="locais"><i data-feather="list"></i> Listar locais</a>
 						</li>
-					</ul>
+					</ul> -->
 					<h6 class="sidebar-heading d-flex justify-content-start px-3 mt-4 mb-1 text-muted">Itens</h6>
 					<ul class="nav flex-column">
 						<li class="nav-item">
@@ -55,7 +55,7 @@
 						</li>
 					</ul>
 					<h6 class="sidebar-heading d-flex justify-content-start px-0 mt-4 mb-1 text-muted">
-						<a class="nav-link" href="logout"><i data-feather="log-out"></i>SAIR</a>
+						<a class="nav-link" href="logout"><i data-feather="log-out"></i>Sair</a>
 					</h6>
 				</div>
 			</nav>
