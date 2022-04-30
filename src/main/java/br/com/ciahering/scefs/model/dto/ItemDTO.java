@@ -13,6 +13,7 @@ public class ItemDTO implements Serializable {
 	private String modelo;
 	private Integer patrimonio;
 	private String local;
+	private Integer quantidade;;
 
 	public Integer getId() {
 		return id;
@@ -70,8 +71,13 @@ public class ItemDTO implements Serializable {
 		this.local = local;
 	}
 
-	public int setQuantidade(int quantidade) {
+	public Integer getQuantidade() {
 		return quantidade;
 	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
 
 }

@@ -147,15 +147,15 @@ public class ItemRepository {
 
 	public List<ItemDTO> getItensByLocal() {
 		try {
-			List<ItemDTO> itensPorLocal = new ArrayList<ItemDTO>();
+			List<ItemDTO> itensPorLocal = new ArrayList<>();
 			PreparedStatement stmt = connection.prepareStatement(
 					"SELECT l.nome AS local, COUNT(i.patrimonio) AS quantidade FROM (public.item i INNER JOIN public.local l ON ((l.id = i.local_id))) GROUP BY l.nome;");
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				ItemDTO itemDto = new ItemDTO();
-				itemDto.setLocal(rs.getString("local"));
-				itemDto.setQuantidade(rs.getInt("quantidade"));
-				itensPorLocal.add(itemDto);
+				ItemDTO item = new ItemDTO();
+				item.setLocal(rs.getString("local"));
+				item.setQuantidade(rs.getInt("quantidade"));
+				itensPorLocal.add(item);
 			}
 			stmt.close();
 			return itensPorLocal;
