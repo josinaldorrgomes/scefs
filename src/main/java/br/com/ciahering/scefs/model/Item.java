@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Item implements Serializable {
-
 	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private LocalDate data_de_aquisicao;
 	private LocalDate data_de_cadastro;

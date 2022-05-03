@@ -9,8 +9,8 @@ public class Movimentacao implements Serializable {
 	private Integer id;
 	private LocalDate data;
 	private String tipo;
-	private Local local;
 	private Item item;
+	private Local local;
 
 	public Movimentacao() {
 	}
@@ -39,6 +39,13 @@ public class Movimentacao implements Serializable {
 		this.tipo = tipo;
 	}
 
+	public Item getItem() {
+		return item;
+	}
+	
+	public void setItem(Item item) {
+		this.item = item;
+	}
 	public Local getLocal() {
 		return local;
 	}
@@ -47,13 +54,6 @@ public class Movimentacao implements Serializable {
 		this.local = local;
 	}
 
-	public Item getItem() {
-		return item;
-	}
-
-	public void setItem(Item item) {
-		this.item = item;
-	}
 
 	@Override
 	public int hashCode() {

@@ -36,6 +36,12 @@
 									</div>
 								</div>
 								<div class="form-group row">
+									<label for="item_id" class="col-sm-2 col-form-label">Item</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" name="item_id" readonly="readonly" value="${item_id}" />
+									</div>
+								</div>
+								<div class="form-group row">
 									<label for="local_id" class="col-sm-2 col-form-label">Local de destino</label>
 									<div class="col-sm-4">
 										<select class="form-control" name="local_id" required="required">
@@ -49,12 +55,6 @@
 											<option value="7">HRG SÃO LUÍS-GO</option>
 											<option value="8">HRG SÃO PAULO-SP</option>
 										</select>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="item_id" class="col-sm-2 col-form-label">Item</label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" name="item_id" readonly="readonly" value="${item_id}" />
 									</div>
 								</div>
 								<div class="form-group row">

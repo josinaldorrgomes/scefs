@@ -47,7 +47,7 @@
 														<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 															<li><a class="dropdown-item" href="popularItem?id=${item.id}"><i data-feather="edit"></i> Editar</a></li>
 															<li><a class="dropdown-item" href="popularMovimentacao?item_id=${item.id}"><i data-feather="plus"></i> Cadastrar movimentação</a></li>
-															<li><a class="dropdown-item" href="movimentacoes?item_id=${item.id}"><i data-feather="list"></i> Listar movimentações</a></li>
+															<li><a class="dropdown-item" href="movimentacoesPorItem?item_id=${item.id}"><i data-feather="list"></i> Listar movimentações</a></li>
 															<li><a class="dropdown-item" href="#"><i data-feather="trash-2"></i> Excluir</a></li>
 														</ul>
 													</div>

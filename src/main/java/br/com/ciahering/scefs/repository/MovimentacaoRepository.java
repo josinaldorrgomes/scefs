@@ -46,7 +46,7 @@ public class MovimentacaoRepository {
 		try {
 			List<Movimentacao> movimentacoes = new ArrayList<Movimentacao>();
 			PreparedStatement stmt = connection.prepareStatement(
-					"SELECT * FROM public.movimentacao INNER JOIN public.item i ON (i.id=?);");
+					"SELECT m.id, m.data, m.tipo, i.patrimonio, l.nome FROM public.movimentacao m INNER JOIN public.item i ON m.item_id = i.id INNER JOIN public.local l ON m.local_id = l.id AND i.id = ?;");
 			stmt.setInt(1, item.getId());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -54,12 +54,11 @@ public class MovimentacaoRepository {
 				movimentacao.setId(rs.getInt("id"));
 				movimentacao.setData(rs.getDate("data").toLocalDate());
 				movimentacao.setTipo(rs.getString("tipo"));
+				item.setId(rs.getInt("patrimonio"));
+				movimentacao.setItem(item);
 				Local local = new Local();
-				local.setId(Integer.valueOf(rs.getString("local_id")));
+				local.setNome(rs.getString("nome"));
 				movimentacao.setLocal(local);
-				Item itemSgbd = new Item();
-				itemSgbd.setId(rs.getInt("id"));
-				movimentacao.setItem(itemSgbd);
 				movimentacoes.add(movimentacao);
 			}
 			stmt.close();

@@ -12,7 +12,7 @@ import br.com.ciahering.scefs.model.Usuario;
 import br.com.ciahering.scefs.repository.UsuarioRepository;
 
 @WebServlet("/login")
-public class UsuarioController extends HttpServlet {
+public class LoginController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 

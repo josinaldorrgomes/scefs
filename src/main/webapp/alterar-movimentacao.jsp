@@ -17,7 +17,7 @@
 							<h6 class="card-title">Alteração da movimentação nº ${movimentacao.id}</h6>
 						</div>
 						<div class="card-body">
-							<form action="Controller" method="post">
+							<form action="alterarMovimentacao" method="post">
 								<div class="form-group row">
 									<label for="id" class="col-sm-2 col-form-label">Id</label>
 									<div class="col-sm-4">
@@ -57,8 +57,6 @@
 								<div class="form-group row">
 									<label for="" class="col-sm-2 col-form-label"></label>
 									<div class="col-sm-6 d-flex justify-content-start">
-										<input type="hidden" name="logica" value="AlterarMovimentacaoLogica" />
-										<input type="hidden" name="metodo" value="alterarMovimentacao" />
 										<button type="submit" class="btn btn-outline-primary">Confirmar alteração</button>
 										<button type="reset" class="btn btn-outline-secondary">Limpar tudo</button>
 									</div>

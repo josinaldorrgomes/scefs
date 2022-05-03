@@ -22,28 +22,28 @@
 								<table class="table">
 									<thead>
 										<tr>
-											<th>Item</th>
+											<th>#</th>
 											<th>Data</th>
 											<th>Tipo</th>
-											<th>Origem</th>
-											<th>Destino</th>
+											<th>Item</th>
+											<th>Local</th>
 											<th class="text-center">Opções</th>
 										</tr>
 									</thead>
 									<c:forEach var="movimentacao" items="${sessionScope.movimentacoes}">
 										<tbody>
 											<tr>
-												<td>${movimentacao.item.id}</td>
-												<td><fmt:formatDate value="${movimentacao.data}" pattern="yyyy/MM/dd" /></td>
+												<td>${movimentacao.id}</td>
+												<td>${movimentacao.data}</td>
 												<td>${movimentacao.tipo}</td>
-												<td>${movimentacao.origem}</td>
-												<td>${movimentacao.destino}</td>
+												<td>${movimentacao.item.id}</td>
+												<td>${movimentacao.local.nome}</td>
 												<td class="text-center">
 													<div class="dropdown">
 														<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/settings.svg" class="img-fluid"></a>
 														<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-															<li><a class="dropdown-item" href="Controller?logica=AlterarMovimentacaoLogica&metodo=popularMovimentacao&id=${movimentacao.id}"><i data-feather="edit"></i> Editar</a></li>
-															<li><a class="dropdown-item" href="Controller?logica=RemoverMovimentacaoLogica&id=${movimentacao.id}"><i data-feather="trash-2"></i> Excluir</a></li>
+															<li><a class="dropdown-item" href="alterarMovimentacao&id=${movimentacao.id}"><i data-feather="edit"></i> Editar</a></li>
+															<li><a class="dropdown-item" href="#"><i data-feather="trash-2"></i> Excluir</a></li>
 														</ul>
 													</div>
 												</td>

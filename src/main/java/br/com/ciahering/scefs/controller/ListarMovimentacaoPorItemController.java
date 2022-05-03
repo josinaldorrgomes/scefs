@@ -17,14 +17,15 @@ import br.com.ciahering.scefs.repository.MovimentacaoRepository;
 public class ListarMovimentacaoPorItemController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	MovimentacaoRepository repository;
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			Item item = new Item();
-			item.setId(Integer.parseInt(request.getParameter("id")));
+			item.setId(Integer.parseInt(request.getParameter("item_id")));
 			Connection connection = (Connection) request.getAttribute("connection");
-			MovimentacaoRepository repository = new MovimentacaoRepository(connection);
+			repository = new MovimentacaoRepository(connection);
 			List<Movimentacao> movimentacoes = repository.getMovimentacoesByItem(item);
 			HttpSession httpSession = request.getSession();
 			httpSession.setAttribute("movimentacoes", movimentacoes);
