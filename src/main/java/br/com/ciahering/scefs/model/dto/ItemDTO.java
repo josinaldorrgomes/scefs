@@ -12,8 +12,6 @@ public class ItemDTO implements Serializable {
 	private String marca;
 	private String modelo;
 	private Integer patrimonio;
-	private String local;
-	private Integer quantidade;;
 
 	public Integer getId() {
 		return id;
@@ -62,22 +60,5 @@ public class ItemDTO implements Serializable {
 	public void setPatrimonio(Integer patrimonio) {
 		this.patrimonio = patrimonio;
 	}
-
-	public String getLocal() {
-		return local;
-	}
-
-	public void setLocal(String local) {
-		this.local = local;
-	}
-
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
 
 }

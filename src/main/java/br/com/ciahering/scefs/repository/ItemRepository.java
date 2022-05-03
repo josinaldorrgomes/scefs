@@ -11,7 +11,6 @@ import java.util.List;
 
 import br.com.ciahering.scefs.model.Item;
 import br.com.ciahering.scefs.model.Local;
-import br.com.ciahering.scefs.model.dto.ItemDTO;
 
 public class ItemRepository {
 
@@ -143,25 +142,6 @@ public class ItemRepository {
 			throw new RuntimeException("Ocorreu um erro ao buscar o patrimônio " + patrimonio, e);
 		}
 		return item;
-	}
-
-	public List<ItemDTO> getItensByLocal() {
-		try {
-			List<ItemDTO> itensPorLocal = new ArrayList<>();
-			PreparedStatement stmt = connection.prepareStatement(
-					"SELECT l.nome AS local, COUNT(i.patrimonio) AS quantidade FROM (public.item i INNER JOIN public.local l ON ((l.id = i.local_id))) GROUP BY l.nome;");
-			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				ItemDTO item = new ItemDTO();
-				item.setLocal(rs.getString("local"));
-				item.setQuantidade(rs.getInt("quantidade"));
-				itensPorLocal.add(item);
-			}
-			stmt.close();
-			return itensPorLocal;
-		} catch (SQLException e) {
-			throw new RuntimeException("Ocorreu uma Exception ao tentar buscar os itens por local.", e);
-		}
 	}
 
 }
