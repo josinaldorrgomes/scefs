@@ -54,6 +54,7 @@
 											<option value="6">HRG PARAÚNA-GO</option>
 											<option value="7">HRG SÃO LUÍS-GO</option>
 											<option value="8">HRG SÃO PAULO-SP</option>
+											<option value="9">REAÇÃO FACÇÃO LTDA - ME</option>
 										</select>
 									</div>
 								</div>

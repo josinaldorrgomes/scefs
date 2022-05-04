@@ -15,7 +15,7 @@
 				<div class="py-3">
 					<div class="card">
 						<div class="card-header">
-							<h6 class="card-title">Lista de movimentações do item - Total: ${fn:length(sessionScope.movimentacoesPorItem)}</h6>
+							<h6 class="card-title">Lista de movimentações - Total: ${fn:length(sessionScope.movimentacoes)}</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">

@@ -42,6 +42,32 @@ public class MovimentacaoRepository {
 		}
 	}
 
+	public List<Movimentacao> getMovimentacoes() {
+		try {
+			List<Movimentacao> movimentacoes = new ArrayList<Movimentacao>();
+			PreparedStatement stmt = connection.prepareStatement(
+					"SELECT m.id, m.data, m.tipo, i.patrimonio, l.nome FROM public.movimentacao m INNER JOIN public.item i ON m.item_id = i.id INNER JOIN public.local l ON m.local_id = l.id ORDER BY m.id;");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Movimentacao movimentacao = new Movimentacao();
+				movimentacao.setId(rs.getInt("id"));
+				movimentacao.setData(rs.getDate("data").toLocalDate());
+				movimentacao.setTipo(rs.getString("tipo"));
+				Item item = new Item();
+				item.setId(rs.getInt("patrimonio"));
+				movimentacao.setItem(item);
+				Local local = new Local();
+				local.setNome(rs.getString("nome"));
+				movimentacao.setLocal(local);
+				movimentacoes.add(movimentacao);
+			}
+			stmt.close();
+			return movimentacoes;
+		} catch (SQLException e) {
+			throw new RuntimeException("Ocorreu um erro ao listar as movimentações", e);
+		}
+	}
+	
 	public List<Movimentacao> getMovimentacoesByItem(Item item) {
 		try {
 			List<Movimentacao> movimentacoes = new ArrayList<Movimentacao>();

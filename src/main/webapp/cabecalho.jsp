@@ -36,7 +36,7 @@
 							<a class="nav-link" href="#"><i data-feather="list"></i> Listar usuários</a>
 						</li>        			
         			</ul> -->
-        			<!-- <h6 class="sidebar-heading d-flex justify-content-start px-3 mt-4 mb-1 text-muted">Locais</h6>
+        			<h6 class="sidebar-heading d-flex justify-content-start px-3 mt-4 mb-1 text-muted">Locais</h6>
         			<ul class="nav flex-column">
 						<li class="nav-item">
 							<a class="nav-link" href="cadastrar-local.jsp"><i data-feather="plus"></i> Cadastrar local</a>
@@ -44,7 +44,7 @@
 						<li class="nav-item">
 							<a class="nav-link" href="locais"><i data-feather="list"></i> Listar locais</a>
 						</li>
-					</ul> -->
+					</ul>
 					<h6 class="sidebar-heading d-flex justify-content-start px-3 mt-4 mb-1 text-muted">Itens</h6>
 					<ul class="nav flex-column">
 						<li class="nav-item">
@@ -52,6 +52,12 @@
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="itens"><i data-feather="list"></i> Listar itens</a>
+						</li>
+					</ul>
+					<h6 class="sidebar-heading d-flex justify-content-start px-3 mt-4 mb-1 text-muted">Movimentação</h6>
+					<ul class="nav flex-column">
+						<li class="nav-item">
+							<a class="nav-link" href="movimentacoes"><i data-feather="list"></i> Listar movimentações</a>
 						</li>
 					</ul>
 					<h6 class="sidebar-heading d-flex justify-content-start px-0 mt-4 mb-1 text-muted">
