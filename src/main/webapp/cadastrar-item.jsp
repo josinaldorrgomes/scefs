@@ -46,15 +46,10 @@
 									<label for="local_id" class="col-sm-2 col-form-label">Local</label>
 									<div class="col-sm-4">
 										<select class="form-control" name="local_id" required="required">
-											<option selected></option>
-											<option value="1">HRG CD ANÁPOLIS-GO</option>
-											<option value="2">HRG BOM RETIRO-SC</option>
-											<option value="3">HRG GOIANÉSIA-GO</option>
-											<option value="4">HRG ITORORÓ-SC</option>
-											<option value="5">HRG MATRIZ-SC</option>
-											<option value="6">HRG PARAÚNA-GO</option>
-											<option value="7">HRG SÃO LUÍS-GO</option>
-											<option value="8">HRG SÃO PAULO-SP</option>
+												<option selected></option>
+											<c:forEach var="local" items="${sessionScope.locais}">
+												<option value="${local.id}">${local.nome}</option>
+											</c:forEach>
 										</select>
 									</div>
 								</div>

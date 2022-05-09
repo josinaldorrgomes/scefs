@@ -48,7 +48,7 @@
 					<h6 class="sidebar-heading d-flex justify-content-start px-3 mt-4 mb-1 text-muted">Itens</h6>
 					<ul class="nav flex-column">
 						<li class="nav-item">
-							<a class="nav-link" href="cadastrar-item.jsp"><i data-feather="plus"></i> Cadastrar item</a>
+							<a class="nav-link" href="popularCadastrarItem"><i data-feather="plus"></i> Cadastrar item</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="itens"><i data-feather="list"></i> Listar itens</a>
