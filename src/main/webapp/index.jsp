@@ -24,11 +24,11 @@
 											<th class="text-center">Itens em estoque</th>
 										</tr>
 									</thead>
-									<c:forEach var="object" items="${sessionScope.itensPorLocal}">
+									<c:forEach var="item" items="${sessionScope.itensPorLocal}">
 										<tbody>
 											<tr>
-												<td><h6><span class="badge badge-secondary"> ${object.local}</span></h6></td>
-												<td class="text-center"><span class="badge badge-pill badge-info"><i data-feather="monitor"></i> ${object.quantidade}</span></td>
+												<td><h6><span class="badge badge-secondary"> ${item.local}</span></h6></td>
+												<td class="text-center"><span class="badge badge-pill badge-info"><i data-feather="monitor"></i> ${item.quantidade}</span></td>
 											</tr>
 										</tbody>
 									</c:forEach>

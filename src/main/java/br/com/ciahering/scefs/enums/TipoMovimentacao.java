@@ -2,25 +2,15 @@ package br.com.ciahering.scefs.enums;
 
 public enum TipoMovimentacao {
 
-	DEVOLUCAO(1, "Devolução ao fornecedor"),
-	CONSERTO(2, "Remessa para conserto"),
-	EMPRESTIMO(3, "Remessa para empréstimo"),
-	TRANSFERENCIA(4, "Transferência de patrimônio");
+	DEVOLUCAO_AO_FORNECEDOR("DEVOLUÇÃO AO FORNECEDOR"),
+	REMESSA_PARA_CONSERTO("REMESSA PARA CONSERTO"),
+	REMESSA_PARA_EMPRESTIMO("REMESSA PARA EMPRÉSTIMO"),
+	TRANSFERENCIA_DE_PATRIMONIO("TRANSFERÊNCIA DE PATRIMÔNIO");
 
-	private int cod;
 	private String descricao;
 
-	private TipoMovimentacao(int cod, String descricao) {
-		this.cod = cod;
+	private TipoMovimentacao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public int getCod() {
-		return cod;
-	}
-
-	public void setCod(int cod) {
-		this.cod = cod;
 	}
 
 	public String getDescricao() {

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.ciahering.scefs.model.Item;
+import br.com.ciahering.scefs.model.dto.ItemDTO;
 import br.com.ciahering.scefs.model.Local;
 
 public class ItemRepository {
@@ -56,7 +57,7 @@ public class ItemRepository {
 			while (rs.next()) {
 				Item item = new Item();
 				item.setId(rs.getInt("id"));
-				item.setData_de_aquisicao(rs.getDate("data_de_cadastro").toLocalDate());
+				item.setData_de_aquisicao(rs.getDate("data_de_aquisicao").toLocalDate());
 				item.setData_de_cadastro(rs.getDate("data_de_cadastro").toLocalDate());
 				item.setMarca(rs.getString("marca"));
 				item.setModelo(rs.getString("modelo"));
@@ -142,6 +143,25 @@ public class ItemRepository {
 			throw new RuntimeException("Ocorreu um erro ao buscar o patrimônio " + patrimonio, e);
 		}
 		return item;
+	}
+
+	public List<ItemDTO> getItensByLocal() {
+		try {
+			List<ItemDTO> itens = new ArrayList<>();
+			PreparedStatement stmt = connection.prepareStatement(
+					"SELECT l.nome AS local, COUNT(i.patrimonio) AS quantidade FROM (item i JOIN local l ON ((l.id=i.local_id))) GROUP BY l.nome ORDER BY l.nome;");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				ItemDTO item = new ItemDTO();
+				item.setLocal(rs.getString("local"));
+				item.setQuantidade(rs.getInt("quantidade"));
+				itens.add(item);
+			}
+			stmt.close();
+			return itens;
+		} catch (SQLException e) {
+			throw new RuntimeException("Ocorreu um erro na listagems de itens. Verifique se a Query está correta e se a rota do Front-end está correta.", e);
+		}
 	}
 
 }

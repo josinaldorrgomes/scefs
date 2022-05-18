@@ -42,10 +42,11 @@ public class Movimentacao implements Serializable {
 	public Item getItem() {
 		return item;
 	}
-	
+
 	public void setItem(Item item) {
 		this.item = item;
 	}
+
 	public Local getLocal() {
 		return local;
 	}
@@ -53,7 +54,6 @@ public class Movimentacao implements Serializable {
 	public void setLocal(Local local) {
 		this.local = local;
 	}
-
 
 	@Override
 	public int hashCode() {

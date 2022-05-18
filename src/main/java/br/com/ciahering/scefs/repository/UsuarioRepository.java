@@ -23,13 +23,13 @@ public class UsuarioRepository {
 			PreparedStatement stmt = connection.prepareStatement("INSERT INTO public.usuario(login, senha, tipo, local_id) VALUES (?, ?, ?, ?);");
 			stmt.setString(1, usuario.getLogin());
 			stmt.setString(2, usuario.getSenha());
-			stmt.setInt(3, usuario.getTipo().getCod());
+			stmt.setString(3, usuario.getTipo().getDescricao());
 			stmt.setInt(4, usuario.getLocal().getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException("Erro ao adicionar o usuário. Verificar se os dados do Front-end vieram corretos! [ Dados fornecidos: "
-					+ "Login: " + usuario.getLogin() + ", Senha: " + usuario.getSenha() + " ]", e);
+					+ "Login: " + usuario.getLogin() + " ]", e);
 		}
 	}
 
